@@ -1,0 +1,1 @@
+{"name":"zvac-companion-marketplace","owner":{"name":"ZVÂC"},"plugins":[{"name":"zvac-companion","displayName":"ZVÂC Companion","source":"./plugins/zvac-companion","description":"Use explicitly authorized ZVÂC context and review proposed career actions before confirming them."}]}
