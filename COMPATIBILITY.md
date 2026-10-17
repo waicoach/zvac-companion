@@ -49,9 +49,9 @@ was changed for it.
 |---|---|
 | File syntax, strict package shape, relative paths, bounded safety scan | Repeatable local checks supplied in `tools/validate.py`; exporter also checks an isolated extracted copy. See delivery evidence for the actual run. |
 | Current backend/config agreement | Local source reconciliation only; no live availability claim. |
-| Anthropic manifest validator | Not run; local checks are not a substitute for it. |
-| GitHub hosting | Not performed: no approved destination supplied. Clean archive is the deliverable. |
-| Plugins repository installation | Not run: no authorized hosted repository and no authenticated Claude Plugins session available for this task. |
+| Anthropic directory source validation | Owner's screenshot for the initial 0.1.1 upload shows 6 of 7 checks passed, one blocker (missing license), plus icon/privacy warnings. This is not approval. 0.1.2 needs a fresh portal validation after upload. |
+| GitHub hosting | Owner uploaded the initial package to waicoach/zvac-companion; its public file inventory was read and confirmed. This does not prove that 0.1.2 has been uploaded. |
+| Plugins repository installation | Not run: no authenticated Claude Plugins session available to this workspace. Directory source validation is not installation. |
 | Automatic `oauth.clientId` use | Unverified in Plugins. The manifest follows a public example, not a certified hosted OAuth contract. |
 | OAuth consent, code exchange, refresh and tool discovery in Plugins | Not run. PKCE and callback are documentation-compatible; actual request behavior needs vendor evidence. |
 | Allowed read, denied read, revoke, prepare/refuse/confirm | Checklist provided; no real Claude result claimed. |

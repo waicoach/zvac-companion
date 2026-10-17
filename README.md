@@ -10,10 +10,14 @@ hosted ZVÂC Companion; it contains no platform backend.
 **Status: prepared for a controlled installation test, not vendor-certified.**
 Local checks do not prove installation, OAuth, tool execution or availability
 on a live ZVÂC deployment. See [compatibility evidence](COMPATIBILITY.md) and
-the [Claude test checklist](CLAUDE-TEST.md). No GitHub destination has been
-authorized or published as part of this package.
+the [Claude test checklist](CLAUDE-TEST.md). The owner published the initial
+package at https://github.com/waicoach/zvac-companion. Check the repository's
+actual version before assuming this newer archive has been uploaded.
 
-Version **0.1.1** includes the official 1024px ZVÂC icon, the display name
+Version **0.1.2** adds the approved MIT license for technical files, separate
+brand terms and canonical privacy/support links. See the
+[directory preparation guide](SUBMISSION.md); preparation is not submission
+or approval. The package includes the official 1024px ZVÂC icon, the display name
 **ZVÂC Companion**, and the icon reference in the plugin manifest. No separate
 icon upload is required to include the branding in this repository. Claude's
 documentation specifies the icon field for directory listings; its display
@@ -170,7 +174,7 @@ then initialize new history from that directory:
 
 ```sh
 git init -b main
-git add -- .claude-plugin README.md COMPATIBILITY.md CLAUDE-TEST.md RIGHTS.md plugins tools
+git add -- .claude-plugin README.md COMPATIBILITY.md CLAUDE-TEST.md SUBMISSION.md LICENSE RIGHTS.md plugins tools
 git commit -m "Add ZVAC Companion plugin preview"
 ```
 
@@ -179,6 +183,21 @@ preconfigured. Never push from the platform checkout, import its Git history,
 or choose a public destination implicitly. A private marketplace is not an
 Anthropic catalog submission. This package grants no open-source license to
 the platform; see [RIGHTS.md](RIGHTS.md).
+
+### Browser uploads
+
+GitHub's browser uploader can omit dot-prefixed files even when Windows
+Hidden items is enabled. Verify the repository includes all three:
+
+- `.claude-plugin/marketplace.json`
+- `plugins/zvac-companion/.claude-plugin/plugin.json`
+- `plugins/zvac-companion/.mcp.json`
+
+If one is missing, use **Add file → Create new file**, enter the complete
+nested path, paste the exact reviewed content, and commit. Do not rename a
+dotfile to make upload accept it. For an existing repository, updating visible
+files does not update a skipped hidden manifest: edit the plugin manifest
+separately to include this version's legal links and version number.
 
 The marketplace archive is for a **repository root**, not **Upload plugin**.
 An upload diagnostic must instead zip only `plugins/zvac-companion` (including

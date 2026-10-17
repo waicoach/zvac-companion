@@ -17,17 +17,21 @@ FILES = (
     ".claude-plugin/marketplace.json",
     "CLAUDE-TEST.md",
     "COMPATIBILITY.md",
+    "LICENSE",
     "README.md",
     "RIGHTS.md",
+    "SUBMISSION.md",
     "plugins/zvac-companion/.claude-plugin/plugin.json",
     "plugins/zvac-companion/.mcp.json",
     "plugins/zvac-companion/README.md",
+    "plugins/zvac-companion/LICENSE",
+    "plugins/zvac-companion/BRAND-NOTICE.md",
     "plugins/zvac-companion/icon.png",
     "plugins/zvac-companion/skills/zvac-companion/SKILL.md",
     "tools/validate.py",
 )
 PUBLIC_HOSTS = {"zvac.net", "claude.ai", "claude.com", "code.claude.com",
-                "support.claude.com", "github.com"}
+                "support.claude.com", "github.com", "opensource.org"}
 SENSITIVE_PATTERNS = (
     r"-----BEGIN [A-Z ]*PRIVATE KEY-----",
     r"\b(?:AKIA|ASIA)[A-Z0-9]{16}\b",
@@ -135,7 +139,30 @@ def validate(root):
             "Plugin source does not resolve inside the exported marketplace")
 
     plugin = load("plugins/zvac-companion/.claude-plugin/plugin.json")
-    keys(plugin, ("name", "displayName", "version", "icon", "description", "author"), "Plugin manifest")
+    keys(plugin, ("name", "displayName", "version", "icon", "description", "author",
+                  "homepage", "repository", "documentationUrl", "privacyPolicyUrl",
+                  "termsOfServiceUrl", "supportUrl"), "Plugin manifest")
+    for field, url in {
+        "homepage": "https://zvac.net",
+        "repository": "https://github.com/waicoach/zvac-companion",
+        "documentationUrl": "https://github.com/waicoach/zvac-companion/blob/main/plugins/zvac-companion/README.md",
+        "privacyPolicyUrl": "https://zvac.net/privacy",
+        "termsOfServiceUrl": "https://zvac.net/terms",
+        "supportUrl": "https://zvac.net/contact",
+    }.items():
+        require(plugin[field] == url, f"Unapproved directory metadata: {field}")
+    root_license = contents["LICENSE"]
+    plugin_license = contents["plugins/zvac-companion/LICENSE"]
+    require(root_license.replace("plugins/zvac-companion/BRAND-NOTICE.md", "BRAND-NOTICE.md")
+            == plugin_license, "Root and installed license terms differ")
+    require("It does not cover icon.png, ZVÂC" in plugin_license
+            and "It grants no rights to the hosted platform, backend" in plugin_license
+            and "Permission is hereby granted, free of charge" in plugin_license
+            and 'THE SOFTWARE IS PROVIDED "AS IS"' in plugin_license,
+            "MIT or distribution scope missing")
+    require("excluded from the MIT license" in contents["plugins/zvac-companion/BRAND-NOTICE.md"]
+            and "unmodified icon" in contents["plugins/zvac-companion/BRAND-NOTICE.md"],
+            "Brand boundary missing")
     require(plugin["displayName"] == entry["displayName"] == "ZVÂC Companion",
             "Display name mismatch")
     require(plugin["icon"] == "./icon.png" and (plugin_root / "icon.png").is_file(),
