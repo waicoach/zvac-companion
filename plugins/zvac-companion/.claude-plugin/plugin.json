@@ -1,1 +1,14 @@
-{"name":"zvac-companion","displayName":"ZVÂC Companion","version":"0.1.1","icon":"./icon.png","description":"Use explicitly authorized ZVÂC context and review proposed career actions before confirming them.","author":{"name":"ZVÂC"}}
+{
+  "name": "zvac-companion",
+  "displayName": "ZVÂC Companion",
+  "version": "0.1.2",
+  "icon": "./icon.png",
+  "homepage": "https://zvac.net",
+  "repository": "https://github.com/waicoach/zvac-companion",
+  "documentationUrl": "https://github.com/waicoach/zvac-companion/blob/main/plugins/zvac-companion/README.md",
+  "privacyPolicyUrl": "https://zvac.net/privacy",
+  "termsOfServiceUrl": "https://zvac.net/terms",
+  "supportUrl": "https://zvac.net/contact",
+  "description": "Use explicitly authorized ZVÂC context and review proposed career actions before confirming them.",
+  "author": { "name": "ZVÂC" }
+}
